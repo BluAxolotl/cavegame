@@ -56,6 +56,9 @@ var readied = false
 var override_input = []
 var idle_timer = 0
 
+var prev_VirtualInputs = null
+var prev_pos = null
+
 var VirtualInputs = {
 	"pressed": {
 		"U": false,
@@ -236,8 +239,10 @@ func _process(delta):
 	if GlobalVars.mode == "multi":
 		match type:
 			CharType.PLAYER:
-				Network._set_pos(position.x, position.y)
-				Network._send_input(VirtualInputs)
+				if (prev_pos != {"x": position.x, "y": position.y}):
+					Network._set_pos(position.x, position.y)
+				if (prev_VirtualInputs != VirtualInputs):
+					Network._send_input(VirtualInputs)
 	if GlobalVars.event_rn and type == CharType.PLAYER:
 		cant_input_val += 1
 	$debug_hurtbox.visible = debug_mode
@@ -372,3 +377,6 @@ func _process(delta):
 			$Sprite.texture.current_frame = 0
 	
 	old_texture = curr_texture[2]
+	
+	prev_VirtualInputs = VirtualInputs
+	prev_pos = {"x": position.x, "y": position.y}
