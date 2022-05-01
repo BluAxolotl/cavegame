@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/screen_top.png" type="Texture" id=2]
+[ext_resource path="res://misc/tileset-1.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/scene_test.gd" type="Script" id=4]
+[ext_resource path="res://sprites/screen.png" type="Texture" id=5]
+[ext_resource path="res://sprites/entities/answering.png" type="Texture" id=7]
+[ext_resource path="res://sprites/entities/!.png" type="Texture" id=8]
+
+[node name="Test" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 160, 160 )
+format = 1
+tile_data = PoolIntArray( 131087, 0, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 1, 0, 131094, 2, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 2, 0, 196623, 3, 0, 196624, 4, 0, 196625, 4, 0, 196626, 4, 0, 196627, 4, 0, 196628, 4, 0, 196629, 4, 0, 196630, 5, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 5, 0, 262159, 3, 0, 262160, 4, 0, 262161, 4, 0, 262162, 4, 0, 262163, 4, 0, 262164, 4, 0, 262165, 4, 0, 262166, 5, 0 )
+
+[node name="Screen" type="Sprite" parent="."]
+position = Vector2( 0, -10 )
+texture = ExtResource( 5 )
+offset = Vector2( 640, 360 )
+
+[node name="Ans" type="Sprite" parent="."]
+position = Vector2( 3090, 270 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="!" type="Sprite" parent="Ans"]
+position = Vector2( 0, -70 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="NPCs" type="Node2D" parent="."]
+position = Vector2( 3080, 110 )
+
+[node name="RelevantChars" type="Node2D" parent="."]
+
+[node name="ScreenTop" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 640, 360 )

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/title/multiplayer.png" type="Texture" id=1]
+[ext_resource path="res://sprites/title/singleplayer.png" type="Texture" id=2]
+[ext_resource path="res://sprites/title/screen'.png" type="Texture" id=3]
+[ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 250, 45 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 245, 45 )
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Screen" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+offset = Vector2( 640, 360 )
+
+[node name="Single" type="Button" parent="."]
+margin_left = 515.0
+margin_top = 325.0
+margin_right = 765.0
+margin_bottom = 370.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Multi" type="Button" parent="."]
+margin_left = 515.0
+margin_top = 405.0
+margin_right = 765.0
+margin_bottom = 450.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

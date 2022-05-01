@@ -1,0 +1,259 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://misc/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/RoomDirectory.gd" type="Script" id=2]
+[ext_resource path="res://misc/fONT.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.345098, 0.345098, 0.345098, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 5.0
+margin_top = 65.0
+margin_right = 1280.0
+margin_bottom = 660.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VBoxContainer" parent="ScrollContainer"]
+
+[node name="Label" type="Label" parent="."]
+margin_top = 35.0
+margin_right = 1280.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 3 )
+text = "Join a room"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 660.0
+margin_right = 125.0
+margin_bottom = 715.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="Button" parent="."]
+margin_left = 1155.0
+margin_top = 660.0
+margin_right = 1275.0
+margin_bottom = 715.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 60.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Refresh" type="Button" parent="."]
+margin_left = 1100.0
+margin_top = 6.0
+margin_right = 1274.0
+margin_bottom = 61.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Refresh"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.54902 )
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Setup" type="AcceptDialog" parent="."]
+margin_left = 370.0
+margin_top = 150.0
+margin_right = 900.0
+margin_bottom = 630.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "Before you join..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Setup"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 522.0
+margin_bottom = 427.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Setup/Control"]
+margin_left = 30.0
+margin_top = 110.0
+margin_right = 200.0
+margin_bottom = 137.0
+theme = ExtResource( 1 )
+text = "nickname:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Setup/Control"]
+margin_left = 30.0
+margin_top = 150.0
+margin_right = 493.0
+margin_bottom = 187.0
+theme = ExtResource( 1 )
+text = "Player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Setup/Control"]
+margin_left = 30.0
+margin_top = 230.0
+margin_right = 210.0
+margin_bottom = 257.0
+theme = ExtResource( 1 )
+text = "character:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="Setup/Control"]
+margin_left = 30.0
+margin_top = 270.0
+margin_right = 493.0
+margin_bottom = 307.0
+theme = ExtResource( 1 )
+text = "Bulb"
+items = [ "Bulb", null, false, 0, null, "Lodges", null, false, 1, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSetup" type="AcceptDialog" parent="."]
+visible = true
+margin_left = 370.0
+margin_top = 150.0
+margin_right = 900.0
+margin_bottom = 630.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "New Room."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="RoomSetup"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 522.0
+margin_bottom = 427.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="RoomSetup/Control"]
+margin_left = 30.0
+margin_top = 110.0
+margin_right = 200.0
+margin_bottom = 137.0
+theme = ExtResource( 1 )
+text = "room name:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="RoomSetup/Control"]
+margin_left = 30.0
+margin_top = 150.0
+margin_right = 493.0
+margin_bottom = 187.0
+theme = ExtResource( 1 )
+text = "New Logcord Room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="RoomSetup/Control"]
+margin_left = 30.0
+margin_top = 230.0
+margin_right = 210.0
+margin_bottom = 257.0
+theme = ExtResource( 1 )
+text = "password:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit2" type="LineEdit" parent="RoomSetup/Control"]
+margin_left = 30.0
+margin_top = 272.0
+margin_right = 493.0
+margin_bottom = 309.0
+theme = ExtResource( 1 )
+placeholder_text = "blank = no password"
+__meta__ = {
+"_edit_use_anchors_": false
+}

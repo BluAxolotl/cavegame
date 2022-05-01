@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/character.tscn" type="PackedScene" id=3]
+
+[node name="Bulb" type="Node2D"]
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+position = Vector2( 100, 340 )
+character_name = "bulb"
+hurtbox = Vector2( 20, 40 )
+offset = Vector2( 0, -40 )
