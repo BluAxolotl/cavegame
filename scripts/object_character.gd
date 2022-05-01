@@ -55,6 +55,7 @@ var old_cant_input = 0
 var readied = false
 var override_input = []
 var idle_timer = 0
+var game_frame = 0
 
 var prev_VirtualInputs = null
 var prev_pos = null
@@ -124,7 +125,6 @@ func _ready():
 			anims["adv_" + i] = true
 		else:
 			anims[i] = placeholder_sprite
-
 
 func _physics_process(delta):
 	if not dashing and free:
@@ -236,13 +236,7 @@ func _physics_process(delta):
 	old_cant_move = cant_move_val
 
 func _process(delta):
-	if GlobalVars.mode == "multi":
-		match type:
-			CharType.PLAYER:
-				if (prev_pos != {"x": position.x, "y": position.y}):
-					Network._set_pos(position.x, position.y)
-				if (prev_VirtualInputs != VirtualInputs):
-					Network._send_input(VirtualInputs)
+	game_frame += 1
 	if GlobalVars.event_rn and type == CharType.PLAYER:
 		cant_input_val += 1
 	$debug_hurtbox.visible = debug_mode
@@ -307,6 +301,16 @@ func _process(delta):
 			$Camera.current = true
 		CharType.NPC:
 			VirtualInputs = GlobalVars.InputTemplate
+	############################################################
+	if GlobalVars.mode == "multi":
+		match type:
+			CharType.PLAYER:
+				if (prev_pos != JSON.print({"x": position.x, "y": position.y})):
+#					print("WOW " + str(game_frame))
+					Network._set_pos(position.x, position.y)
+				if (prev_VirtualInputs != JSON.print(VirtualInputs)):
+					print("wah wah " + str(game_frame))
+					Network._send_input(VirtualInputs)
 	############################################################
 	$Camera.limit_top = -GlobalVars.camera_limits[0]
 	$Camera.limit_bottom = GlobalVars.camera_limits[1]
@@ -378,5 +382,5 @@ func _process(delta):
 	
 	old_texture = curr_texture[2]
 	
-	prev_VirtualInputs = VirtualInputs
-	prev_pos = {"x": position.x, "y": position.y}
+	prev_VirtualInputs = JSON.print(VirtualInputs)
+	prev_pos = JSON.print({"x": position.x, "y": position.y})
