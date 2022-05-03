@@ -24,9 +24,6 @@ border_color = Color( 1, 1, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="ColorRect" parent="."]
 margin_right = 1280.0
@@ -64,10 +61,10 @@ margin_left = 5.0
 margin_top = 660.0
 margin_right = 125.0
 margin_bottom = 715.0
+custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = ExtResource( 3 )
 text = "Host"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,10 +75,10 @@ margin_left = 1155.0
 margin_top = 660.0
 margin_right = 1275.0
 margin_bottom = 715.0
+custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = ExtResource( 3 )
 text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,10 +89,10 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 125.0
 margin_bottom = 60.0
+custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = ExtResource( 3 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -106,10 +103,10 @@ margin_left = 1100.0
 margin_top = 6.0
 margin_right = 1274.0
 margin_bottom = 61.0
+custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = ExtResource( 3 )
 text = "Refresh"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -309,7 +309,6 @@ func _process(delta):
 #					print("WOW " + str(game_frame))
 					Network._set_pos(position.x, position.y)
 				if (prev_VirtualInputs != JSON.print(VirtualInputs)):
-					print(VirtualInputs.pressed.A)
 					Network._send_input(VirtualInputs)
 	############################################################
 	$Camera.limit_top = -GlobalVars.camera_limits[0]

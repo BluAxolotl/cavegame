@@ -1,6 +1,6 @@
 extends Node
 
-export var websocket_url = "ws://192.168.1.2:3000/"
+export var websocket_url = "wss://MultiplayerWebSocket.donovanedwards.repl.co"
 
 var _client = WebSocketClient.new()
 var connected = false
@@ -27,7 +27,7 @@ signal GotRooms
 func _ready():
 	print(OS.is_debug_build())
 	if OS.is_debug_build():
-		websocket_url = "ws://192.168.1.2:3000/"
+		websocket_url = websocket_url
 	_client.connect("connection_closed", self, "_closed")
 	_client.connect("connection_error", self, "_closed")
 	_client.connect("connection_established", self, "_connected")
@@ -50,6 +50,7 @@ func _on_data():
 	var json_string = JSON.parse(_client.get_peer(1).get_packet().get_string_from_utf8())
 	var message = json_string.result
 	if (message.type == "pong"):
+		print("RECIEVED PONG")
 		ping_time = OS.get_system_time_msecs() - message.timestamp
 	elif (message.type != "send_input" and message.type != "broadcast_send_input"): print(message)
 	if String(message.type).begins_with("broadcast_") and message.requestingID != obj.id:

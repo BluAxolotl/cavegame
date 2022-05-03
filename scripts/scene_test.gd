@@ -30,8 +30,10 @@ func _process(delta):
 		if GlobalVars.current_character.position.distance_to($Ans.position) < 100 and not GlobalVars.event_rn:
 			$"Ans/!".visible = true
 			if Input.is_action_just_pressed("U"):
+				var local_ping_time = "%sms" % Network.ping_time
 				Event.new([
 					Textbox.new("Oh hey, %s" % GlobalVars.current_character.character_name.capitalize(), Color(1,1,1), null, [[GlobalVars.current_character.character_name.capitalize(), Color("#FFE737")]]),
+					Textbox.new("Your ping is %s" % local_ping_time, Color(1,1,1), null, [[local_ping_time, Color("#FFE737")]]),
 				])
 		else:
 			$"Ans/!".visible = false
