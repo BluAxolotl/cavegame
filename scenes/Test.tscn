@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://misc/fONT.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/screen_top.png" type="Texture" id=2]
 [ext_resource path="res://misc/tileset-1.tres" type="TileSet" id=3]
 [ext_resource path="res://scripts/scene_test.gd" type="Script" id=4]
@@ -48,3 +49,14 @@ position = Vector2( 3080, 110 )
 [node name="ScreenTop" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 offset = Vector2( 640, 360 )
+
+[node name="PingLabel" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 30.0
+margin_right = 700.0
+margin_bottom = 330.0
+custom_fonts/font = ExtResource( 1 )
+text = "0ms"
+__meta__ = {
+"_edit_use_anchors_": false
+}

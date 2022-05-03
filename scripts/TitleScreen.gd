@@ -9,5 +9,6 @@ func _singleplayer():
 	get_tree().change_scene("res://scenes/Test.tscn")
 
 func _multiplayer():
+	Network.initialize()
 	GlobalVars.mode = "multi"
 	get_tree().change_scene("res://scenes/RoomDirectory.tscn")

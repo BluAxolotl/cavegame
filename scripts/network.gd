@@ -5,6 +5,7 @@ export var websocket_url = "ws://192.168.1.2:3000/"
 var _client = WebSocketClient.new()
 var connected = false
 var connecting = false
+var start_connecting = false
 var obj = {
 	"name": "",
 	"charname": "",
@@ -19,6 +20,7 @@ var obj = {
 	}
 }
 var other_players = {}
+var ping_time = 0
 
 signal GotRooms
 
@@ -31,6 +33,9 @@ func _ready():
 	_client.connect("connection_established", self, "_connected")
 	_client.connect("data_received", self, "_on_data")
 
+func initialize():
+	start_connecting = true
+
 func _closed(was_clean = false):
 	connected = false
 	set_process(false)
@@ -38,12 +43,15 @@ func _closed(was_clean = false):
 func _connected(_proto):
 	connecting = false
 	print("connected!")
+	ping()
 	connected = true
 
 func _on_data():
 	var json_string = JSON.parse(_client.get_peer(1).get_packet().get_string_from_utf8())
 	var message = json_string.result
-	if (message.type != "send_input" and message.type != "broadcast_send_input"): print(message)
+	if (message.type == "pong"):
+		ping_time = OS.get_system_time_msecs() - message.timestamp
+	elif (message.type != "send_input" and message.type != "broadcast_send_input"): print(message)
 	if String(message.type).begins_with("broadcast_") and message.requestingID != obj.id:
 		message.type = message.type.replace("broadcast_", "")
 		match message.type:
@@ -87,15 +95,16 @@ func _on_data():
 					other_players[i.id] = c
 
 func _process(delta):
-	_client.poll()
-	if not connected and not connecting:
-		connecting = true
-		print(websocket_url)
-		var err = _client.connect_to_url(websocket_url)
-		if err != OK:
-			connecting = false
-			OS.alert("Unable to connect", "ERROR!")
-			set_process(false)
+	if (start_connecting):
+		_client.poll()
+		if not connected and not connecting:
+			connecting = true
+			print(websocket_url)
+			var err = _client.connect_to_url(websocket_url)
+			if err != OK:
+				connecting = false
+				OS.alert("Unable to connect", "ERROR!")
+				set_process(false)
 
 func _send_input(inputs):
 	var to_send = {
@@ -159,3 +168,18 @@ func get_player():
 			"id": obj.id,
 			"charname": obj.charname,
 		}
+
+func ping():
+	print("Pinging...")
+	var room_id = null
+	if (obj.room != null):
+		room_id = obj.room.my_index
+	var to_send = {
+		"type": "ping",
+		"requestingID": obj.id,
+		"timestamp": OS.get_system_time_msecs(),
+		"room_id": room_id
+	}
+	_client.get_peer(1).put_packet(JSON.print(to_send).to_utf8())
+	yield(get_tree().create_timer(1.0), "timeout")
+	ping()

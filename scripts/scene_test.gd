@@ -6,7 +6,8 @@ func _ready():
 	GlobalVars.hud_elements = [
 		$Screen,
 		$ScreenTop,
-		$Background
+		$Background,
+		$PingLabel
 	]
 	GlobalVars.change_current_scene(self)
 	match GlobalVars.mode:
@@ -24,6 +25,7 @@ func _ready():
 	yield(GlobalVars.event, "done")
 
 func _process(delta):
+	$PingLabel.text = "%sms" % Network.ping_time
 	if GlobalVars.current_character != null:
 		if GlobalVars.current_character.position.distance_to($Ans.position) < 100 and not GlobalVars.event_rn:
 			$"Ans/!".visible = true
